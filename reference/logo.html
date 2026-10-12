@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Logo in use</title>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="../tokens/tokens.css">
+<style>
+  html, body { margin:0; }
+  * { box-sizing:border-box; }
+  body { background:var(--night-000); color:var(--ink); font-family:var(--font-sans); width:960px; padding:var(--space-6); }
+  .grid { display:grid; grid-template-columns:1.6fr 1fr 1fr; gap:var(--space-4); }
+  .tile { height:200px; display:grid; place-items:center; position:relative; border:1px solid var(--line); }
+  .cap { font-family:var(--font-mono); font-size:12px; line-height:16px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-muted); margin:var(--space-2) 0 0; }
+  .cap b { color:var(--ink); font-weight:500; }
+  /* fixed specimen grounds: each lockup is shown on the ground it is made for */
+  .g-dark { background:#0A0612; } .g-card { background:#120B22; } .g-light { background:#FBF8FF; } .g-mag { background:#FF2E97; }
+  .clear { position:relative; padding:17px; outline:1px dashed #22E4FF; }
+  .clear img { display:block; height:40px; }
+  .clear i { position:absolute; left:0; top:0; width:17px; height:17px; background:#22E4FF33; }
+  .row2 { display:grid; grid-template-columns:1fr 1.2fr 1fr; gap:var(--space-4); margin-top:var(--space-6); }
+  .sizes { display:flex; align-items:flex-end; gap:var(--space-6); }
+  .sizes div { display:flex; flex-direction:column; align-items:center; gap:var(--space-2); font-family:var(--font-mono); font-size:12px; line-height:16px; color:#B9ABDB; }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div>
+      <div class="tile g-dark"><div class="clear"><i></i><img src="../logos/amy-workspaice-lockup.svg" alt="Amy-WorkspAIce"></div></div>
+      <p class="cap"><b>lockup</b> · default, dark grounds · clear space ½ the sun's width (shaded)</p>
+    </div>
+    <div>
+      <div class="tile g-light"><img src="../logos/amy-workspaice-lockup-light.svg" alt="Amy-WorkspAIce" style="width:220px"></div>
+      <p class="cap"><b>lockup-light</b> · light grounds</p>
+    </div>
+    <div>
+      <div class="tile g-mag"><img src="../logos/amy-workspaice-lockup-mono-white.svg" alt="Amy-WorkspAIce" style="width:220px"></div>
+      <p class="cap"><b>lockup-mono-white</b> · on magenta, one ink</p>
+    </div>
+  </div>
+  <div class="row2">
+    <div>
+      <div class="tile g-card"><img src="../logos/amy-workspaice-lockup-stacked.svg" alt="Amy-WorkspAIce" style="height:120px"></div>
+      <p class="cap"><b>lockup-stacked</b> · square spaces</p>
+    </div>
+    <div>
+      <div class="tile g-dark"><div class="sizes">
+        <div><img src="../logos/amy-workspaice-mark.svg" width="96" height="96" alt="">96</div>
+        <div><img src="../logos/amy-workspaice-mark.svg" width="48" height="48" alt="">48</div>
+        <div><img src="../logos/amy-workspaice-mark.svg" width="24" height="24" alt="">24 min</div>
+        <div><img src="../logos/amy-workspaice-app-icon-32.png" width="16" height="16" alt="">16 icon</div>
+      </div></div>
+      <p class="cap"><b>mark</b> · down to 24px, then the app icon</p>
+    </div>
+    <div>
+      <div class="tile g-dark"><img src="../logos/amy-workspaice-app-icon.svg" alt="Amy-WorkspAIce app icon" width="150" height="150"></div>
+      <p class="cap"><b>app-icon</b> · launchers, PWA, favicon</p>
+    </div>
+  </div>
+</body>
+</html>

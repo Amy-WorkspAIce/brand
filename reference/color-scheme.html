@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Color scheme in use</title>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="../tokens/tokens.css">
+<style>
+  html, body { margin:0; }
+  body { background:var(--night-000); color:var(--ink); font-family:var(--font-sans); font-size:15px; line-height:24px; }
+  * { box-sizing:border-box; }
+  .app { display:grid; grid-template-columns:224px 1fr; height:600px; width:960px; }
+  .cut-sm { clip-path:polygon(var(--cut-sm) 0, 100% 0, 100% calc(100% - var(--cut-sm)), calc(100% - var(--cut-sm)) 100%, 0 100%, 0 var(--cut-sm)); }
+  .cut-md { clip-path:polygon(var(--cut-md) 0, 100% 0, 100% calc(100% - var(--cut-md)), calc(100% - var(--cut-md)) 100%, 0 100%, 0 var(--cut-md)); }
+  svg.i { width:18px; height:18px; flex:none; fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:square; stroke-linejoin:miter; }
+
+  .side { background:var(--night-100); border-right:1px solid var(--line); padding:var(--space-4); display:flex; flex-direction:column; }
+  .brand { display:flex; align-items:center; gap:var(--space-2); margin:0 0 var(--space-6); }
+  .brand img { height:26px; display:block; }
+  .brand .on-light { display:none; }
+  [data-theme="light"] .brand .on-dark { display:none; }
+  [data-theme="light"] .brand .on-light { display:block; }
+  .lbl { font-size:12px; line-height:16px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-faint); margin:var(--space-2) 0 var(--space-2) var(--space-2); }
+  .nav { display:flex; align-items:center; gap:var(--space-3); padding:var(--space-2) var(--space-3); color:var(--ink-muted); }
+  .nav.on { background:var(--magenta-soft); color:var(--ink); font-weight:600; }
+  .nav.on svg { color:var(--magenta); }
+  .nav.amy svg { color:var(--cyan); }
+  .side .foot { margin-top:auto; font-family:var(--font-mono); font-size:12px; line-height:16px; font-weight:500; letter-spacing:.08em; color:var(--ink-faint); padding:0 var(--space-2); }
+  .side .foot i { font-style:normal; color:var(--success); }
+
+  .main { display:flex; flex-direction:column; min-width:0; }
+  .top { display:flex; align-items:center; justify-content:space-between; padding:var(--space-4) var(--space-6); border-bottom:1px solid var(--line); }
+  .top h1 { margin:0; font-size:26px; line-height:32px; font-weight:600; }
+  .readout { font-family:var(--font-mono); font-size:12px; line-height:16px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; }
+  .readout .c { color:var(--cyan); } .readout .ok { color:var(--success); }
+
+  .chat { flex:1; padding:var(--space-6); display:flex; flex-direction:column; gap:var(--space-4); overflow:hidden; }
+  .me { align-self:flex-end; max-width:420px; background:var(--night-200); padding:var(--space-3) var(--space-4); border-radius:var(--radius-md); }
+  .amy { display:flex; gap:var(--space-3); max-width:560px; }
+  .av { width:36px; height:36px; flex:none; background:var(--night-100); display:grid; place-items:center; box-shadow:var(--glow-cyan); border-radius:var(--radius-sm); }
+  .av img { width:28px; height:28px; display:block; }
+  .who { color:var(--cyan); margin:0 0 var(--space-1); }
+  .bub { background:var(--cyan-soft); padding:var(--space-3) var(--space-4); border-radius:var(--radius-md); }
+  .bub p { margin:0 0 var(--space-3); }
+  .att { display:flex; gap:var(--space-2); align-items:center; flex-wrap:wrap; }
+  .file { display:inline-flex; align-items:center; gap:var(--space-2); padding:var(--space-1) var(--space-3); background:var(--night-100); border:1px solid var(--line-strong); border-radius:var(--radius-sm); font-size:13px; line-height:20px; }
+  .tag { font-size:12px; line-height:16px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; padding:var(--space-1) var(--space-2); border:1px solid var(--cyan); color:var(--cyan); }
+
+  .status { display:flex; gap:var(--space-3); padding:0 var(--space-6) var(--space-4); }
+  .st { display:flex; align-items:center; gap:var(--space-2); padding:var(--space-2) var(--space-3); background:var(--night-100); border:1px solid var(--line); font-size:13px; line-height:20px; color:var(--ink-muted); }
+  .st.ok svg { color:var(--success); } .st.warn svg { color:var(--warning); } .st.bad svg { color:var(--danger); }
+  .st b { font-weight:600; }
+  .st.ok b { color:var(--success); } .st.warn b { color:var(--warning); } .st.bad b { color:var(--danger); }
+
+  .composer { display:flex; gap:var(--space-2); padding:var(--space-4) var(--space-6) var(--space-6); border-top:1px solid var(--line); background:var(--night-000); }
+  .input { flex:1; display:flex; align-items:center; padding:0 var(--space-3); height:40px; background:var(--night-200); border:1px solid var(--line-strong); border-radius:var(--radius-sm); color:var(--ink-faint); box-shadow:var(--focus-ring); }
+  .input .caret { width:2px; height:18px; background:var(--cyan); margin-right:var(--space-2); }
+  .btn { height:40px; display:inline-flex; align-items:center; gap:var(--space-2); padding:0 var(--space-4); font-family:var(--font-sans); font-size:15px; font-weight:600; border:0; }
+  .btn.sec { background:transparent; color:var(--ink); box-shadow:inset 0 0 0 1px var(--line-strong); }
+  .btn.pri { background:var(--magenta); color:var(--on-magenta); }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand"><img class="on-dark" src="../logos/amy-workspaice-lockup.svg" alt="Amy-WorkspAIce"><img class="on-light" src="../logos/amy-workspaice-lockup-light.svg" alt="Amy-WorkspAIce"></div>
+    <div class="lbl">Workspace</div>
+    <div class="nav on cut-sm"><svg class="i" viewBox="0 0 18 18"><path d="M2.5 3.5h13v9h-7l-3.5 3v-3H2.5z"/></svg>Chat</div>
+    <div class="nav"><svg class="i" viewBox="0 0 18 18"><path d="M4 2.5h7l3 3v10H4z M11 2.5v3h3"/></svg>Docs</div>
+    <div class="nav"><svg class="i" viewBox="0 0 18 18"><path d="M2.5 4.5h5l1.5 1.5h6.5v8.5h-13z"/></svg>Files</div>
+    <div class="nav"><svg class="i" viewBox="0 0 18 18"><path d="M3 4.5h12v10.5H3z M3 8h12 M6 2.5v3 M12 2.5v3"/></svg>Calendar</div>
+    <div class="lbl">Amy</div>
+    <div class="nav amy"><svg class="i" viewBox="0 0 18 18"><circle cx="9" cy="9" r="3.5"/><ellipse cx="9" cy="9" rx="7.5" ry="2.6" transform="rotate(-16 9 9)"/></svg>Ask Amy</div>
+    <div class="nav"><svg class="i" viewBox="0 0 18 18"><path d="M10 2.5L4.5 10H9l-1 5.5L13.5 8H9z"/></svg>Automations</div>
+    <div class="foot">AMY <i>●</i> ONLINE</div>
+  </aside>
+  <main class="main">
+    <div class="top">
+      <h1>Chat with Amy</h1>
+      <div class="readout"><span class="c">SYS://AMY</span>&nbsp;&nbsp;<span class="ok">ONLINE</span></div>
+    </div>
+    <div class="chat">
+      <div class="me">Can you summarize the three onboarding docs and flag anything that's out of date?</div>
+      <div class="amy">
+        <div class="av"><img src="../logos/amy-workspaice-mark.svg" alt=""></div>
+        <div>
+          <div class="readout who">Amy</div>
+          <div class="bub">
+            <p>I read all three. Two are current. <b>Laptop setup</b> still points at the old VPN address, so I drafted a fix for you to review.</p>
+            <div class="att">
+              <span class="file"><svg class="i" viewBox="0 0 18 18"><path d="M4 2.5h7l3 3v10H4z M11 2.5v3h3"/></svg>laptop-setup.md</span>
+              <span class="tag">AI draft</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="status">
+      <div class="st ok"><svg class="i" viewBox="0 0 18 18"><path d="M3.5 9.5l3.5 3.5 7.5-8"/></svg><b>Synced</b> 2 min ago</div>
+      <div class="st warn"><svg class="i" viewBox="0 0 18 18"><path d="M9 2.5l7 13H2z M9 7.5v4 M9 13v.5"/></svg><b>Indexing</b> 1,204 files</div>
+      <div class="st bad"><svg class="i" viewBox="0 0 18 18"><path d="M3 3l12 12 M15 3L3 15"/></svg><b>Storage 92% full</b></div>
+    </div>
+    <div class="composer">
+      <div class="input"><span class="caret"></span>Message Amy</div>
+      <button class="btn sec"><svg class="i" viewBox="0 0 18 18"><path d="M11.5 5.5l-5 5a1.8 1.8 0 0 0 2.5 2.5l6-6a3.2 3.2 0 0 0-4.5-4.5l-6 6"/></svg>Attach</button>
+      <button class="btn pri cut-sm">Send</button>
+    </div>
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Amy-WorkspAIce</title>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="../tokens/tokens.css">
+<style>
+  html, body { margin:0; height:100%; }
+  body { background:var(--night-000); color:var(--ink); font-family:var(--font-sans); overflow:hidden; }
+  .cover { position:relative; width:960px; height:288px; overflow:hidden; }
+  .art { position:absolute; top:0; left:480px; width:480px; height:288px; overflow:hidden; }
+  .art svg { display:block; width:480px; height:288px; }
+  .solar { fill:var(--solar); }
+  .sunset { fill:var(--sunset); }
+  .magenta { fill:var(--magenta); }
+  .cyan { fill:var(--cyan); }
+  .plus { stroke:var(--magenta); stroke-width:2; fill:none; }
+  .words { position:absolute; left:var(--space-6); bottom:var(--space-6); max-width:440px; }
+  .name { margin:0; font-family:var(--font-display); font-weight:400; font-size:64px; line-height:.95; color:var(--ink); }
+  .tag { margin:var(--space-2) 0 0 2px; font-size:14px; line-height:20px; color:var(--ink-muted); }
+</style>
+</head>
+<body>
+<div class="cover">
+<div class="art" aria-hidden="true">
+<svg viewBox="480 0 480 288" width="480" height="288">
+<!--
+  blocks      solar 328×88 bled off the top · sunset 336×40 · magenta 344×60 (the brand: the widest band) · cyan 480×12 horizon (Amy) — together ≈25% of 960×288
+  arrangement a strip of unequal bands stacked as a sun setting off the right edge: left edges follow one circle (r 440, centre 1060,216) snapped to space-2, slices between them thicken downward
+  pattern     plus grid, from "4px grid" and the HUD/mono readouts: the grid floor under the horizon, magenta pluses at a space-6 pitch, 2 rows × 19
+  scales      gaps space-2, space-3, space-2; horizon space-3 tall; plus arms space-2; pitch space-6; corners radius-0, one cut-lg chamfer on the magenta band
+-->
+<rect class="solar" x="632" y="-8" width="336" height="96"/>
+<rect class="sunset" x="624" y="96" width="344" height="40"/>
+<path class="magenta" d="M640 148H968V208H616V172Z"/>
+<rect class="cyan" x="480" y="216" width="488" height="12"/>
+<g class="plus">
+<path d="M500 248h8M504 244v8M524 248h8M528 244v8M548 248h8M552 244v8M572 248h8M576 244v8M596 248h8M600 244v8M620 248h8M624 244v8M644 248h8M648 244v8M668 248h8M672 244v8M692 248h8M696 244v8M716 248h8M720 244v8M740 248h8M744 244v8M764 248h8M768 244v8M788 248h8M792 244v8M812 248h8M816 244v8M836 248h8M840 244v8M860 248h8M864 244v8M884 248h8M888 244v8M908 248h8M912 244v8M932 248h8M936 244v8"/>
+<path d="M500 272h8M504 268v8M524 272h8M528 268v8M548 272h8M552 268v8M572 272h8M576 268v8M596 272h8M600 268v8M620 272h8M624 268v8M644 272h8M648 268v8M668 272h8M672 268v8M692 272h8M696 268v8M716 272h8M720 268v8M740 272h8M744 268v8M764 272h8M768 268v8M788 272h8M792 268v8M812 272h8M816 268v8M836 272h8M840 268v8M860 272h8M864 268v8M884 272h8M888 268v8M908 272h8M912 268v8M932 272h8M936 268v8"/>
+</g>
+</svg>
+</div>
+<div class="words">
+<h1 class="name">Amy-<br>WorkspAIce</h1>
+<p class="tag">The digital workspace of the future</p>
+</div>
+</div>
+</body>
+</html>
